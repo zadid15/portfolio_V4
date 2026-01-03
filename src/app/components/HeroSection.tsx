@@ -28,14 +28,14 @@ export function HeroSection() {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-    },
-  };
+  // const itemVariants = {
+  //   hidden: { opacity: 0, y: 30 },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+  //   },
+  // };
 
   return (
     <section id="home" className="mt-[30px] md:mt-0 relative min-h-screen flex items-center justify-center bg-gradient-to-t from-white to-[#A7C7B7]/10 pt-24 pb-16 px-4">
@@ -45,26 +45,26 @@ export function HeroSection() {
         variants={containerVariants}
         className="max-w-4xl mx-auto text-center"
       >
-        <motion.div variants={itemVariants} className="flex justify-center mb-[50px] relative z-0">
+        <motion.div  className="flex justify-center mb-[50px] relative z-0">
           <Logo className="scale-300 md:scale-500" showText={false} />
         </motion.div>
 
         <motion.h1
-          variants={itemVariants}
+          
           className="text-4xl md:text-6xl font-black italic mb-4 text-gray-900 relative z-10"
         >
           Hello, I'm <span className="text-[#14532D] z-1">Muhammad Zadid</span>
         </motion.h1>
 
         <motion.h2
-          variants={itemVariants}
+          
           className="text-xl md:text-4xl font-normal text-gray-700 mb-6"
         >
           Full Stack Developer & Designer
         </motion.h2>
 
         <motion.p
-          variants={itemVariants}
+          
           className="text-md md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
         >
           Crafting beautiful, functional, and user-centered digital experiences.
@@ -72,7 +72,7 @@ export function HeroSection() {
         </motion.p>
 
         <motion.div
-          variants={itemVariants}
+          
           className="flex flex-wrap gap-4 justify-center mb-8"
         >
           <motion.a
@@ -98,7 +98,7 @@ export function HeroSection() {
         </motion.div>
 
         <motion.div
-          variants={itemVariants}
+          
           className="flex gap-4 justify-center"
         >
           <motion.a
