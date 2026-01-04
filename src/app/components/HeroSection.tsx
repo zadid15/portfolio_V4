@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Blocks, ChevronsDown, Github, Instagram, Linkedin, Mail, MessageCircle, Phone } from 'lucide-react';
+import { Blocks, Github, Instagram, Linkedin, Mail, MessageCircle, Phone } from 'lucide-react';
 import { Logo } from './Logo';
 
 export function HeroSection() {
