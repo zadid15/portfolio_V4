@@ -10,10 +10,13 @@ const portfolios = [
 ];
 
 export function ProjectsSection() {
+  const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1); // 1 = kanan, -1 = kiri  
 
   useEffect(() => {
+    if (isOpen) return;
+
     const interval = setInterval(() => {
       setActive((prev) =>
         prev === portfolios.length - 1 ? 0 : prev + 1
@@ -21,7 +24,20 @@ export function ProjectsSection() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [active]);
+  }, [active, isOpen]);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+
+    if (isOpen) {
+      window.addEventListener('keydown', handleEsc);
+    }
+
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [isOpen]);
+
 
   const prev = () => {
     setDirection(-1);
@@ -35,6 +51,44 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="py-24 px-4 bg-white">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="fixed inset-0 z-[999] bg-black/70 flex items-center justify-center px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+          >
+            <motion.div
+              className="relative"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              transition={{ type: 'spring', stiffness: 120 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute -top-4 -right-4 z-10
+            bg-gray-100 text-black rounded-full p-4 shadow-lg
+            hover:bg-gray-200 transition"
+                aria-label="Close preview"
+              >
+                ✕
+              </button>
+
+              {/* Image */}
+              <img
+                src={portfolios[active]}
+                alt="Preview"
+                className="max-w-full max-h-[90vh] rounded-2xl shadow-2xl"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="max-w-7xl mx-auto">
 
         {/* Title */}
@@ -70,7 +124,8 @@ export function ProjectsSection() {
                 key={active}
                 src={portfolios[active]}
                 alt="Portfolio"
-                className="absolute h-full max-w-full object-contain rounded-3xl bg-white"
+                onClick={() => setIsOpen(true)}
+                className="absolute h-full max-w-full object-contain rounded-3xl bg-white cursor-zoom-in"
                 initial={{ opacity: 0, x: direction * 60 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: direction * -60 }}
