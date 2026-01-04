@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Blocks, ChevronsDown, Github, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import { Blocks, ChevronsDown, Github, Instagram, Linkedin, Mail, MessageCircle, Phone } from 'lucide-react';
 import { Logo } from './Logo';
 
 export function HeroSection() {
@@ -93,7 +93,7 @@ export function HeroSection() {
             onClick={(e) => handleClick(e, '#contact')}
           >
             Get In Touch
-            <ChevronsDown size={20} />
+            <MessageCircle size={20} />
           </motion.a>
         </motion.div>
 
